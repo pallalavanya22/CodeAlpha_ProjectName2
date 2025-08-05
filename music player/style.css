@@ -1,0 +1,61 @@
+/* it is a background color code */
+
+body {
+  font-family: sans-serif;
+  background: #a015bc;
+  color: rgb(0, 247, 255);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+/* box styling*/
+.player {
+  background: #d52c9d;
+  padding: 20px; /* it is use to increse or decrease the box size*/
+  border-radius: 30px;
+  text-align: center;
+  width: 300px; /* width (size ) of the box*/
+  box-shadow: 0 8px 16px rgba(25, 21, 77, 0.717);
+}
+
+.controls button {
+  background: #333;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  font-size: large;
+  cursor: pointer;
+}
+
+.progress-container,
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap:5px;
+ margin-top: 20px;
+}
+
+input[type="range"] {
+  flex: 1;
+}
+
+.playlist {
+
+  text-align: left;
+}
+
+.playlist ul {
+  list-style: none;
+  padding: 0;
+}
+
+.playlist li {
+ padding: 5px;
+  cursor: pointer;
+}
+
+.playlist li:hover {
+  background: #333;
+}
