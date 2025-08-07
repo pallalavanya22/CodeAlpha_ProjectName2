@@ -35,3 +35,26 @@ This is a stylish and fully functional calculator web application built using **
 - **HTML** – For structure
 - **CSS** – For modern UI design and responsiveness
 - **JavaScript** – For interactive logic and keyboard support
+
+ # TASK 3:
+ 
+- # Personal Portfolio Website: Lavanya Palla
+
+This project is a **responsive personal portfolio website** developed as part of an internship task. It showcases the developer's profile, skills, projects, resume, and contact details in a clean and modern layout.
+
+## ✨ Features:
+
+- 📌 Attractive landing page with professional layout
+- 🧑‍💻 About Me section to introduce the developer
+- 💼 Projects section highlighting completed work
+- 📃 Resume section with key academic and internship details
+- 🛠️ Skills section with animated progress bars
+- 📩 Contact form with basic JavaScript validation
+- 👤 Profile image section with hover animation
+- 🌐 Social media links (GitHub & LinkedIn)
+
+## Technologies Used:
+
+- **HTML** – Structure of the website
+- **CSS** – Styling and layout (including animations and hover effects)
+- **JavaScript** – Interactive features like form alerts and animated skill bars
