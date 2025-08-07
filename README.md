@@ -1,4 +1,4 @@
-# TASK 2:
+# TASK 1:
 
  # Title & Project name
   🎵 Music Player Web App
