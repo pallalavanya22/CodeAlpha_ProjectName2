@@ -10,6 +10,26 @@ This project was created as part of an internship task to demonstrate audio cont
 - Playlist display and selection
 - Responsive design
 # Technologies Used
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
+- HTML
+- CSS
+- JavaScript
+
+  
+# TASK 2:
+# Modern Calculator
+
+This is a stylish and fully functional calculator web application built using **HTML**, **CSS**, and **JavaScript** as part of an internship task. It offers a smooth user experience with both button and keyboard support, making basic arithmetic calculations intuitive and efficient.
+
+# Features:
+
+-  Real-time calculations with instant display
+-  Clear and delete functionality
+-  Responsive design with modern glassmorphism UI
+-  Keyboard input support (numbers, operators, Enter, Backspace, Escape)
+- Stylish hover effects and transitions
+
+- #  Technologies Used:
+
+- **HTML** – For structure
+- **CSS** – For modern UI design and responsiveness
+- **JavaScript** – For interactive logic and keyboard support
