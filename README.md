@@ -2,6 +2,9 @@
 https://github.com/pallalavanya22/CodeAlpha_Tasks/tree/main/Calculator
 # task2: portfolio
 
+# task3: music player
+https://github.com/pallalavanya22/CodeAlpha_Tasks/tree/main/music%20player
+
 
 
 
