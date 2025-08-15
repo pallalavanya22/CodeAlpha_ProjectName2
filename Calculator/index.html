@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Calculator with History</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0e0404,#928dab );
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.calculator {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 0 30px rgba(145, 35, 35, 0.4);
+  width: 350px;
+}
+
+#display {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-radius: 15px;
+  font-size: 28px;
+  padding: 10px;
+  text-align: right;
+  margin-bottom: 15px;
+  color: #fff;
+  background: rgba(16, 1, 11, 0.973);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.btn {
+  padding: 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.operator {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  color: #222;
+  font-weight: bold;
+}
+
+.operator:hover {
+  background: linear-gradient(135deg, #f2709c, #ff9472);
+}
+
+.equal {
+  grid-column: span 2;
+  background: linear-gradient(135deg, #00b09b, #96c93d);
+  color: #222;
+  font-weight: bold;
+}
+
+.equal:hover {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+.history {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  width: 200px;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.history h2 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.history-item {
+  font-size: 14px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+
+.history-item:hover {
+  color: yellow;
+}
+</style>
+
+<body>
+  <div class="container">
+    
+    <!-- Calculator -->
+    <div class="calculator">
+      <input type="text" id="display" disabled />
+
+      <div class="buttons">
+        <button class="btn" onclick="clearDisplay()">C</button>
+        <button class="btn" onclick="deleteLast()">DEL</button>
+        <button class="btn" onclick="append('%')">%</button>
+        <button class="btn operator" onclick="append('/')">÷</button>
+
+        <button class="btn" onclick="append('7')">7</button>
+        <button class="btn" onclick="append('8')">8</button>
+        <button class="btn" onclick="append('9')">9</button>
+        <button class="btn operator" onclick="append('*')">×</button>
+
+        <button class="btn" onclick="append('4')">4</button>
+        <button class="btn" onclick="append('5')">5</button>
+        <button class="btn" onclick="append('6')">6</button>
+        <button class="btn operator" onclick="append('-')">−</button>
+
+        <button class="btn" onclick="append('1')">1</button>
+        <button class="btn" onclick="append('2')">2</button>
+        <button class="btn" onclick="append('3')">3</button>
+        <button class="btn operator" onclick="append('+')">+</button>
+
+        <button class="btn" onclick="append('0')">0</button>
+        <button class="btn" onclick="append('.')">.</button>
+        <button class="btn equal" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+    <!-- History Panel -->
+    <div class="history">
+      <h2>History</h2>
+      <div id="historyList"></div>
+    </div>
+
+  </div>
+  <script>
+    const display = document.getElementById('display');
+const historyList = document.getElementById('historyList');
+
+// Append input to display
+function append(char) {
+  display.value += char;
+}
+
+// Clear entire display
+function clearDisplay() {
+  display.value = '';
+}
+
+// Delete last character
+function deleteLast() {
+  display.value = display.value.slice(0, -1);
+}
+
+// Calculate the expression & store history
+function calculate() {
+  try {
+    let expression = display.value;
+    let result = eval(expression.replace('%', '/100'));
+    if (result !== undefined && expression !== '') {
+      addHistory(expression, result);
+      display.value = result;
+    }
+  } catch {
+    display.value = 'Error';
+  }
+}
+
+// Add calculation to history
+function addHistory(expression, result) {
+  if (!historyList) return; // Prevent errors if element missing
+
+  const item = document.createElement('div');
+  item.classList.add('history-item');
+  item.textContent = `${expression} = ${result}`;
+  // Click to restore full expression
+  item.onclick = () => {
+    display.value = expression;
+  };
+  historyList.prepend(item); // newest first
+}
+
+// Keyboard support
+document.addEventListener('keydown', (e) => {
+  const key = e.key;
+  if (!isNaN(key) || ['+', '-', '*', '/', '.', '%', '(', ')'].includes(key)) {
+    append(key);
+  } else if (key === 'Enter') {
+    calculate();
+  } else if (key === 'Backspace') {
+    deleteLast();
+  } else if (key === 'Escape') {
+    clearDisplay();
+  }
+});
+
+  </script>
+</body>
+</html>
